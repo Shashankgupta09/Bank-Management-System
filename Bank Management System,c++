@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+class Bank {
+private:
+    float amount;
+    float balance;
+    int acc_no;
+
+public:
+    Bank() {
+        balance = 0; 
+    }
+
+    void account() {
+        int choice;
+
+        cout << "Enter Account Number: ";
+        cin >> acc_no;
+
+        while (true) {
+            cout << "\n Bank Menu \n";
+            cout << "1. Deposit Money\n";
+            cout << "2. Withdraw Money\n";
+            cout << "3. Check Balance\n";
+            cout << "4. Exit\n";
+            cout << "Enter your option: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    cout << "Enter amount to deposit: ";
+                    cin >> amount;
+                    if (amount > 0) {
+                        balance += amount;
+                        cout << "Deposited " << amount << " successfully";
+                    } else {
+                        cout << "Invalid amount!\n";
+                    }
+                    break;
+
+                case 2:
+                    cout << "Enter amount to withdraw: ";
+                    cin >> amount;
+                    if (amount > 0 && amount <= balance) {
+                        balance -= amount;
+                        cout << "Withdrawn " << amount << " successfully";
+                    } else {
+                        cout << "Insufficient balance ";
+                    }
+                    break;
+
+                case 3:
+                    cout << "Current Balance: " << balance;
+                    break;
+
+                case 4:
+                    cout << " Exited";
+                    return;
+
+                default:
+                    cout << "Invalid choice";
+            }
+        }
+    }
+};
+
+int main() {
+    Bank b;
+    b.account();
+    return 0;
+}
